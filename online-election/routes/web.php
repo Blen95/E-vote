@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\ElectionView;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('/E-vote/production/createelection');
+    return view('/ui/production/electionopened');
 });
-Route::get('/E-vote/production/adminelection', function () {
+Route::get('/ui/production/adminelection', function () {
     return view('E-vote.production.adminelection');
 })->name('adminelection');
 
@@ -22,7 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::post('/E-vote/production/createelection', [ElectionController::class, 'create'])->name('elections.create');
+Route::post('/ui/production/createelection', [ElectionController::class, 'create'])->name('elections.create');
+Route::get('/ui/production/index', [ElectionView::class, 'index']);
 
 
 require __DIR__.'/auth.php';

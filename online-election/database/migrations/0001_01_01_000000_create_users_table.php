@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->string('email')->unique();
                 $table->string('username')->unique();
                 $table->string('password');
-                $table->enum('role', ['shareholder', 'admin', 'candidate', 'bod']);
+                $table->enum('role', ['shareholder', 'admin', 'candidate', 'bod','employee']);
                 $table->timestamps();
                 $table->softDeletes(); 
         

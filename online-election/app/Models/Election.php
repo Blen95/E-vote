@@ -12,7 +12,7 @@ class Election extends Model
     protected $primaryKey = 'eid';
 
     protected $fillable = [
-        'election_name', 'start_date', 'end_date'
+        'election_name', 'description','start_date', 'end_date'
     ];
 
     public function nominees()

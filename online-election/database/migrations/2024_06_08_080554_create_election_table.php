@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('election', function (Blueprint $table) {
             $table->id('eid');
             $table->string('election_name');
+            $table->string('description');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
