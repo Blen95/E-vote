@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nominee', function (Blueprint $table) {
-            $table->id('nominee_id');
+        Schema::create('candidate', function (Blueprint $table) {
+            $table->id('candidate_id');
             $table->string('fname');
             $table->string('lname');
             $table->string('email')->unique();
             $table->foreignId('election_id')->constrained('election', 'eid');
-            $table->foreignId('nominator_id')->constrained('users', 'user_id');
+            $table->binary('cv');
+            $table->enum('status', ['pending', 'accepted', 'denied']);
             $table->timestamps();
         });
     }

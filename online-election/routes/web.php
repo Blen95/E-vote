@@ -4,13 +4,27 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ElectionView;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
 Route::get('/', function () {
-    return view('/ui/production/electionopened');
+    return view('/ui/production/login');
 });
 Route::get('/ui/production/adminelection', function () {
     return view('E-vote.production.adminelection');
 })->name('adminelection');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/ui/production/index', function () {
+        return view('ui/production/index');
+    })->name('member.dashboard');
+
+    Route::get('/ui/production/index2', function () {
+        return view('ui.production.index2');
+    })->name('admin.dashboard');
+});
+
 
 
 
