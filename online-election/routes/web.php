@@ -6,8 +6,61 @@ use App\Http\Controllers\ElectionView;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    return view('/ui/production/landingpage');
+});
+Route::get('/login', function () {
+    return view('/ui/production/login');
+});
+
+//member
+Route::get('/form', function () {
+    return view('/ui/production/form');
+});
+Route::get('/index', function () {
+    return view('/ui/production/index');
+});
+Route::get('/electionopened', function () {
     return view('/ui/production/electionopened');
 });
+
+Route::get('/new', function () {
+    return view('/ui/production/new');
+});
+Route::get('/guestindex', function () {
+    return view('/ui/production/guestindex');
+});
+
+
+//admin
+Route::get('/form2', function () {
+    return view('/ui/production/form2');
+});
+Route::get('/adminelection', function () {
+    return view('/ui/production/adminelection');
+});
+Route::get('/candidateregister', function () {
+    return view('/ui/production/candidateregister');
+});
+Route::get('/index2', function () {
+    return view('/ui/production/index2');
+});
+Route::get('/createelection', function () {
+    return view('/ui/production/createelection');
+});
+Route::get('/profile', function () {
+    return view('/ui/production/profile');
+});
+Route::get('/electionclosed', function () {
+    return view('/ui/production/electionclosed');
+});
+Route::get('/tables_dynamic', function () {
+    return view('/ui/production/tables_dynamic');
+});
+Route::get('/voterregister', function () {
+    return view('/ui/production/voterregister');
+});
+
+
 Route::get('/ui/production/adminelection', function () {
     return view('E-vote.production.adminelection');
 })->name('adminelection');
@@ -28,3 +81,8 @@ Route::get('/ui/production/index', [ElectionView::class, 'index']);
 
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/ui/production/register', function () {
+    return view('/ui/production/register');
+})->name('register.form');
