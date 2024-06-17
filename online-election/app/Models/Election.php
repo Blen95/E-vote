@@ -12,18 +12,24 @@ class Election extends Model
     protected $primaryKey = 'eid';
 
     protected $fillable = [
-        'election_name', 'description','start_date', 'end_date'
+        'election_name',
+        'description',
+        'start_date',
+        'end_date',
+        'eligible_voters',
+    ];
+    protected $casts = [
+        'eligible_voters' => 'array',
+        'start_date' => 'date',
+        'end_date' => 'date',
     ];
 
     public function nominees()
     {
-        return $this->hasMany(Nominee::class, 'election_id', 'eid');
-    }
-
-    public function candidates()
-    {
         return $this->hasMany(Candidate::class, 'election_id', 'eid');
     }
+
+    
 
     public function votes()
     {

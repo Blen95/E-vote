@@ -17,19 +17,60 @@ class User extends Authenticatable
         'fname', 'lname', 'email', 'username', 'password', 'role'
     ];
 
-    protected $hidden = [
+    /*protected $hidden = [
         'password', 'remember_token',
     ];
-
+*/
     protected $dates = ['deleted_at'];
 
-    public function nominees()
+    
+
+    
+
+public function isAdmin()
     {
-        return $this->hasMany(Nominee::class, 'nominator_id', 'user_id');
+        return $this->role === 'admin';
     }
 
-    public function candidate()
+    /**
+     * Check if the user is a shareholder.
+     *
+     * @return bool
+     */
+    public function isShareholder()
     {
-        return $this->hasOne(Candidate::class, 'user_id', 'user_id');
+        return $this->role === 'shareholder';
     }
+
+    /**
+     * Check if the user is a candidate.
+     *
+     * @return bool
+     */
+    public function isCandidate()
+    {
+        return $this->role === 'candidate';
+    }
+
+    /**
+     * Check if the user is a member of the board of directors (bod).
+     *
+     * @return bool
+     */
+    public function isBoardMember()
+    {
+        return $this->role === 'bod';
+    }
+
+    /**
+     * Check if the user is an employee.
+     *
+     * @return bool
+     */
+    public function isEmployee()
+    {
+        return $this->role === 'employee';
+    }
+
+    // You can define additional role checking methods as needed...
 }
