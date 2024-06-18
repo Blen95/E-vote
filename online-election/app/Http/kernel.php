@@ -85,7 +85,10 @@ class Kernel implements KernelContract
      *
      * @deprecated
      */
-    protected $routeMiddleware = [];
+    protected $routeMiddleware = [
+'auth.redirect' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+
+    ];
 
     /**
      * The application's middleware aliases.

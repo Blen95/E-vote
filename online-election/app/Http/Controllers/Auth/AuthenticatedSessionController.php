@@ -28,30 +28,53 @@ class AuthenticatedSessionController extends Controller
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $user = auth()->user();
-            //dd($user->role);
-            switch ($user->role) {
-                case 'admin':
-                    return redirect()->route('admin.dashboard');
-                case 'shareholder':
-                case 'candidate':
-                case 'bod':
-                case 'employee':
-                    return redirect()->route('member.dashboard');
-                default:
-                    return abort(403, 'Unauthorized access');
-            }
+
+            // Redirect based on user role
+            return $this->redirectBasedOnRole();
         }
 
-        // Authentication failed
-       return back()->withErrors([
-        'username' => 'The provided credentials do not match our records.',
+        return back()->withErrors([
+            'username' => 'The provided credentials do not match our records.',
         ]);
     }
+
+    /**
+     * Determine the redirect path based on the user's role.
+     */
+    protected function redirectBasedOnRole()
+    {
+        $user = Auth::user();
+
+        switch ($user->role) {
+            case 'admin':
+                return redirect()->route('admin.dashboard');
+            case 'shareholder':
+            case 'candidate':
+            case 'bod':
+            case 'employee':
+                return redirect()->route('member.dashboard');
+            default:
+                return abort(403, 'Unauthorized access');
+        }
+        
+    }
+    public function adminDashboard()
+    {
+        return view('admin.dashboard'); // Replace with your admin dashboard view
+    }
+
+    /**
+     * Redirect to the member dashboard.
+     */
+    public function memberDashboard()
+    {
+        return view('member.dashboard'); // Replace with your member dashboard view
+    }
+
+
 
     /**
      * Destroy an authenticated session.
