@@ -63,7 +63,7 @@ class AuthenticatedSessionController extends Controller
     }
     public function adminDashboard()
     {
-        return view('admin.dashboard'); // Replace with your admin dashboard view
+        return view('ui/production/index2'); // Replace with your admin dashboard view
     }
 
     /**
@@ -71,7 +71,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function memberDashboard()
     {
-        return view('member.dashboard'); // Replace with your member dashboard view
+        return view('ui/production/index');// Replace with your member dashboard view
     }
 
 

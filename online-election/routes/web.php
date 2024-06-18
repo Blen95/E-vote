@@ -6,14 +6,16 @@ use App\Http\Controllers\ElectionView;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-//Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
 Route::get('/', function () {
     return view('/ui/production/landingpage');
 });
-Route::get('/login', function () {
+Route::post('/login', [AuthenticatedSessionController::class, 'redirectBasedOnRole'])->name('login');
+
+
+/*Route::get('/login', function () {
     return view('/ui/production/login');
-});
+});*/
 Route::middleware(['auth'])->group(function () {
     Route::get('/index2', [AuthenticatedSessionController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/index', [AuthenticatedSessionController::class, 'memberDashboard'])->name('member.dashboard');
@@ -74,7 +76,7 @@ Route::get('/ui/production/adminelection', function () {
     return view('E-vote.production.adminelection');
 })->name('adminelection');
 
-Route::middleware('auth')->group(function () {
+/*Route::middleware('auth')->group(function () {
     Route::get('/ui/production/index', function () {
         return view('ui/production/index');
     })->name('member.dashboard');
@@ -83,7 +85,7 @@ Route::middleware('auth')->group(function () {
         return view('ui.production.index2');
     })->name('admin.dashboard');
 });
-
+*/
 
 
 
