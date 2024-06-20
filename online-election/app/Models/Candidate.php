@@ -8,18 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Candidate extends Model
 {
     use HasFactory;
-    protected $table = 'candidates'; // Table name
+    
+    protected $table = 'candidate'; // Table name in your database
 
-    protected $primaryKey = 'candidate_id'; // Primary key
+    protected $primaryKey = 'candidate_id'; // Primary key column name
 
     protected $fillable = [
         'fname',
         'lname',
         'email',
         'election_id',
-        'cv',
-        'status'
+        'status',
+        'manifesto' 
     ];
+        
 
     /**
      * Get the election that the candidate is participating in.

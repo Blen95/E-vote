@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\CandidateController;
+
 use App\Http\Controllers\ElectionView;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -64,6 +66,12 @@ Route::get('/tables_dynamic', function () {
 Route::get('/voterregister', function () {
     return view('/ui/production/voterregister');
 });
+// routes/web.php
+
+
+
+Route::get('/candidate/register', [CandidateController::class, 'showRegistrationForm'])->name('candidate.register');
+Route::post('/candidate/register', [CandidateController::class, 'register'])->name('candidate.register.submit');
 
 
 Route::get('/ui/production/adminelection', function () {
