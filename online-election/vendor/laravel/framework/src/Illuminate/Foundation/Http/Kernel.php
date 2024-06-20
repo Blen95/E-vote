@@ -87,7 +87,13 @@ class Kernel implements KernelContract
      *
      * @deprecated
      */
-    protected $routeMiddleware = [];
+    // File: app/Http/Kernel.php
+
+protected $routeMiddleware = [
+    'auth.redirect' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+    // Other middleware entries...
+];
+
 
     /**
      * The application's middleware aliases.
@@ -651,4 +657,5 @@ class Kernel implements KernelContract
 
         return $this;
     }
+    
 }
