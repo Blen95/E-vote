@@ -101,7 +101,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::post('/ui/production/createelection', [ElectionController::class, 'create'])->name('elections.create');
-Route::get('/ui/production/index', [ElectionView::class, 'index']);
+//Route::get('/ui/production/index', [ElectionView::class, 'index']);
+Route::get('/ui/production/adminelection',[ElectionView::class,'index']);
 
 
 require __DIR__.'/auth.php';
