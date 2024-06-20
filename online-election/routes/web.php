@@ -7,20 +7,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
+
 Route::get('/', function () {
     return view('/ui/production/landingpage');
 });
-Route::post('/login', [AuthenticatedSessionController::class, 'redirectBasedOnRole'])->name('login');
+//Route::post('/login', [AuthenticatedSessionController::class, 'redirectBasedOnRole'])->name('login');
 
 
-/*Route::get('/login', function () {
+Route::get('/login', function () {
     return view('/ui/production/login');
-});*/
+})->name('login'); 
+/*
 Route::middleware(['auth'])->group(function () {
     Route::get('/index2', [AuthenticatedSessionController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/index', [AuthenticatedSessionController::class, 'memberDashboard'])->name('member.dashboard');
 });
-
+*/
 //member
 Route::get('/form', function () {
     return view('/ui/production/form');
