@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('election_id')->constrained('election', 'eid');
             $table->binary('cv');
             $table->enum('status', ['pending', 'accepted', 'denied']);
+            // adding manifesto colum
+            $table->string('manifesto');
             $table->timestamps();
         });
     }

@@ -1,7 +1,6 @@
+
 <?php
-
-namespace Database\Seeders;
-
+use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
@@ -18,39 +17,19 @@ class UserSeeder extends Seeder
             'fname' => 'Admin',
             'lname' => 'User',
             'email' => 'admin@example.com',
-            'username' => 'adminuser',
-            'password' => Hash::make('password'), // Ensure the password is hashed
+            'username' => 'admin',
+            'password' => bcrypt('password'), // Replace 'password' with your desired password
             'role' => 'admin',
         ]);
 
-        // Create shareholder user
+        // Insert a shareholder user
         User::create([
             'fname' => 'Shareholder',
             'lname' => 'User',
             'email' => 'shareholder@example.com',
-            'username' => 'shareholderuser',
-            'password' => Hash::make('password'), // Ensure the password is hashed
+            'username' => 'shareholder',
+            'password' => bcrypt('password'), // Replace 'password' with your desired password
             'role' => 'shareholder',
-        ]);
-
-        // Create candidate user
-        User::create([
-            'fname' => 'Candidate',
-            'lname' => 'User',
-            'email' => 'candidate@example.com',
-            'username' => 'candidateuser',
-            'password' => Hash::make('password'), // Ensure the password is hashed
-            'role' => 'candidate',
-        ]);
-
-        // Create employee user
-        User::create([
-            'fname' => 'Employee',
-            'lname' => 'User',
-            'email' => 'employee@example.com',
-            'username' => 'employeeuser',
-            'password' => Hash::make('password'), // Ensure the password is hashed
-            'role' => 'employee',
         ]);
     }
 }
