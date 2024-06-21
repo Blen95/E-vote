@@ -1,6 +1,8 @@
+
 <?php
 
 namespace Database\Seeders;
+
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,20 +16,18 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+
         User::create([
             'fname' => 'Admin',
             'lname' => 'User',
             'email' => 'admin@example.com',
-            'username' => 'adminuser',
-            'password' => Hash::make('password'), // Ensure the password is hashed
-            'role' => 'admin',
-        ]);
 
-        // Create shareholder user
+
         User::create([
             'fname' => 'Shareholder',
             'lname' => 'User',
             'email' => 'shareholder@example.com',
+
             'username' => 'shareholderuser',
             'password' => Hash::make('password'), // Ensure the password is hashed
             'role' => 'shareholder',
@@ -54,3 +54,4 @@ class UserSeeder extends Seeder
         ]);
     }
 }
+
