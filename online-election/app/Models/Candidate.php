@@ -17,7 +17,7 @@ class Candidate extends Model
         'lname',
         'email',
         'election_id',
-        'cv',
+        
         'status',
         'manifesto'
     ];

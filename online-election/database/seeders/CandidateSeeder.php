@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Candidate;
 use Illuminate\Support\Facades\Hash; 
+
 
 class CandidateSeeder extends Seeder
 {
@@ -22,5 +24,6 @@ class CandidateSeeder extends Seeder
             
             'manifesto' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
         ]);
+
     }
 }

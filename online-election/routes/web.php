@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\CandidateController;
+
 use App\Http\Controllers\ElectionView;
 use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
@@ -73,6 +75,12 @@ Route::get('/tables_dynamic', function () {
 Route::get('/voterregister', function () {
     return view('/ui/production/voterregister');
 });
+// routes/web.php
+
+
+
+Route::get('/candidate/register', [CandidateController::class, 'showRegistrationForm'])->name('candidate.register');
+Route::post('/candidate/register', [CandidateController::class, 'register'])->name('candidate.register.submit');
 
 /*
 Route::get('/ui/production/adminelection', function () {
@@ -108,6 +116,7 @@ Route::get('/ui/production/electionclosed/{eid}',[VoteController::class,'candida
 Route::get('/ui/production/electionopened/{eid}',[VoteController::class,'candidates'])->name('requestpage');
 Route::get('/ui/production/adminelection/close/{id}', [ElectionController::class, 'close'])->name('election.close');
 Route::get('/ui/production/adminelection/open/{id}', [ElectionController::class, 'open'])->name('election.open');
+Route::post('/approve-candidate/{eid}/{candidateid}', [ElectionController::class, 'approveCandidate'])->name('approve.candidate');
 
 
 require __DIR__.'/auth.php';

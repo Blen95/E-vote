@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Election;
+use App\Models\Vote;
 use Illuminate\Validation\ValidationException;
 
 class ElectionController extends Controller
@@ -68,5 +69,11 @@ class ElectionController extends Controller
         $election->save();
 
         return redirect()->back()->with('success', 'Election opened successfully.');
+    }
+    public function approveCandidate($eid,$candidateid){
+        Vote::create([
+            'election_id' => $eid,
+            'candidate_id' => $candidateid,
+        ]);
     }
 }
