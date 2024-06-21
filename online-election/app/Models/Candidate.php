@@ -8,18 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class Candidate extends Model
 {
     use HasFactory;
-    protected $table = 'candidates'; // Table name
 
-    protected $primaryKey = 'candidate_id'; // Primary key
+    protected $table = 'candidate'; // Correct table name in your database
+
+    protected $primaryKey = 'id'; // Primary key column name (default 'id' in Laravel)
 
     protected $fillable = [
         'fname',
         'lname',
         'email',
         'election_id',
-        'cv',
-        'status'
+        // 'cv_path',
+        'status',
+        'manifesto',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (is_null($model->status)) {
+                $model->status = 'pending'; // Set default value for status
+            }
+        });
+    }
 
     /**
      * Get the election that the candidate is participating in.
