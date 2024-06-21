@@ -1,38 +1,57 @@
-lily, [6/15/2024 6:49 PM]
+
 <?php
 
 namespace Database\Seeders;
 
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash; 
 
-class UsersSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        // Insert an admin user
+
         User::create([
             'fname' => 'Admin',
             'lname' => 'User',
             'email' => 'admin@example.com',
-            'username' => 'admin',
-            'password' => bcrypt('password'), // Replace 'password' with your desired password
-            'role' => 'admin',
-        ]);
 
-        // Insert a shareholder user
+
         User::create([
             'fname' => 'Shareholder',
             'lname' => 'User',
             'email' => 'shareholder@example.com',
-            'username' => 'shareholder',
-            'password' => bcrypt('password'), // Replace 'password' with your desired password
+
+            'username' => 'shareholderuser',
+            'password' => Hash::make('password'), // Ensure the password is hashed
             'role' => 'shareholder',
+        ]);
+
+        // Create candidate user
+        User::create([
+            'fname' => 'Candidate',
+            'lname' => 'User',
+            'email' => 'candidate@example.com',
+            'username' => 'candidateuser',
+            'password' => Hash::make('password'), // Ensure the password is hashed
+            'role' => 'candidate',
+        ]);
+
+        // Create employee user
+        User::create([
+            'fname' => 'Employee',
+            'lname' => 'User',
+            'email' => 'employee@example.com',
+            'username' => 'employeeuser',
+            'password' => Hash::make('password'), // Ensure the password is hashed
+            'role' => 'employee',
         ]);
     }
 }
+

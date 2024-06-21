@@ -39,4 +39,31 @@ class ElectionController extends Controller
             return redirect()->back()->with('error', 'An error occurred while creating the election.');
         }
     }
+
+    public function close($id)
+    {
+        $election = Election::findOrFail($id);
+
+        if ($election->status === 'closed') {
+            return redirect()->back()->with('error', 'Election is already closed.');
+        }
+
+        $election->status = 'closed';
+        $election->save();
+
+        return redirect()->back()->with('success', 'Election closed successfully.');
+    }
+    public function open($id)
+    {
+        $election = Election::findOrFail($id);
+
+        if ($election->status === 'open') {
+            return redirect()->back()->with('error', 'Election is already open.');
+        }
+
+        $election->status = 'open';
+        $election->save();
+
+        return redirect()->back()->with('success', 'Election opened successfully.');
+    }
 }

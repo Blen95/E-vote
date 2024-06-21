@@ -2,26 +2,47 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
-
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        User::create([
-            'fname' => 'John',
-            'lname' => 'Doe',
-            'email' => 'john.doe@example.com',
-            'username' => 'johndoe',
-            'password' => Hash::make('password'), // Use Hash::make() to hash the password
+        // Create admin user
+        User::factory()->create([
+            'fname' => 'Admin',
+            'lname' => 'User',
+            'email' => 'admin@example.com',
+            'username' => 'adminuser',
             'role' => 'admin',
+        ]);
+
+        // Create shareholder user
+        User::factory()->create([
+            'fname' => 'Shareholder',
+            'lname' => 'User',
+            'email' => 'shareholder@example.com',
+            'username' => 'shareholderuser',
+            'role' => 'shareholder',
+        ]);
+
+        // Create candidate user
+        User::factory()->create([
+            'fname' => 'Candidate',
+            'lname' => 'User',
+            'email' => 'candidate@example.com',
+            'username' => 'candidateuser',
+            'role' => 'candidate',
+        ]);
+
+        // Create employee user
+        User::factory()->create([
+            'fname' => 'Employee',
+            'lname' => 'User',
+            'email' => 'employee@example.com',
+            'username' => 'employeeuser',
+            'role' => 'employee',
         ]);
     }
 }

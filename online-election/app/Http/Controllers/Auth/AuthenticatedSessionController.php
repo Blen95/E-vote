@@ -31,8 +31,9 @@ class AuthenticatedSessionController extends Controller
   $elections = Election::where('is_active', true);
 
   if ($user->role === 'admin') {
-    // Admins can see all elections
-    $elections; // No additional filtering needed
+    
+    $elections = Election::all();
+ // No additional filtering needed
   } else {
     // Filter for elections relevant to other roles (shareholder, candidate, etc.)
     $elections=Election::whereIn('election_name',['bod','policy'])->get();
