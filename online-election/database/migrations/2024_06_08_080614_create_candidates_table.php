@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->foreignId('election_id')->constrained('election', 'eid');
-            $table->binary('cv');
-            $table->enum('status', ['pending', 'accepted', 'denied']);
+            // $table->binary('cv');
+            $table->string('status')->default('pending'); // Set default value for status
             // adding manifesto colum
             $table->string('manifesto');
             $table->timestamps();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nominees');
+        Schema::dropIfExists('candidate');
     }
 };

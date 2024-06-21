@@ -24,7 +24,7 @@ class Election extends Model
         'end_date' => 'date',
     ];
 
-    public function nominees()
+    public function candidate()
     {
         return $this->hasMany(Candidate::class, 'election_id', 'eid');
     }
