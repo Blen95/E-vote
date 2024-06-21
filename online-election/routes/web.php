@@ -61,7 +61,7 @@ Route::get('/index2', function () {
 });
 Route::get('/createelection', function () {
     return view('/ui/production/createelection');
-});
+})->name('createelection.form');
 Route::get('/profile', function () {
     return view('/ui/production/profile');
 });
@@ -81,10 +81,10 @@ Route::get('/voterregister', function () {
 Route::get('/candidate/register', [CandidateController::class, 'showRegistrationForm'])->name('candidate.register');
 Route::post('/candidate/register', [CandidateController::class, 'register'])->name('candidate.register.submit');
 
-
+/*
 Route::get('/ui/production/adminelection', function () {
     return view('E-vote.production.adminelection');
-})->name('adminelection');
+})->name('adminelection');*/
 
 /*Route::middleware('auth')->group(function () {
     Route::get('/ui/production/index', function () {
@@ -109,7 +109,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::post('/ui/production/createelection', [ElectionController::class, 'create'])->name('elections.create');
-Route::get('/ui/production/index', [ElectionView::class, 'index']);
+//Route::get('/ui/production/index', [ElectionView::class, 'index']);
+Route::get('/ui/production/adminelection',[ElectionView::class,'index'])->name('adminelection');
+Route::get('/ui/production/adminelection/close/{id}', [ElectionController::class, 'close'])->name('election.close');
+Route::get('/ui/production/adminelection/open/{id}', [ElectionController::class, 'open'])->name('election.open');
 
 
 require __DIR__.'/auth.php';
