@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Candidate extends Model
 {
     use HasFactory;
-    protected $table = 'candidates'; // Table name
+    protected $table = 'candidate'; // Table name
 
     protected $primaryKey = 'candidate_id'; // Primary key
 
@@ -18,7 +18,8 @@ class Candidate extends Model
         'email',
         'election_id',
         'cv',
-        'status'
+        'status',
+        'manifesto'
     ];
 
     /**

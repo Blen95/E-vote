@@ -24,25 +24,23 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function getElections()
-{
-  $user = Auth::user();
+    {
+        $user = Auth::user();
 
-  // Default to retrieving all active elections
-  $elections = Election::where('is_active', true);
+        // Default to retrieving all active elections
+       // $elections = Election::where('is_active', true);
 
-  if ($user->role === 'admin') {
-    
-    $elections = Election::all();
- // No additional filtering needed
-  } else {
-    // Filter for elections relevant to other roles (shareholder, candidate, etc.)
-    $elections=Election::whereIn('election_name',['bod','policy'])->get();
-  }
+        if ($user->role === 'admin') {
+            $elections = Election::all(); // No additional filtering needed
+        } else if($user->role === 'shareholder'){
+            // Filter for elections relevant to other roles (shareholder, candidate, etc.)
+            $elections = Election::whereJsonContains('eligible_voters', $user->role)
+                                ->get();
+        }
 
-  return $elections;
-}
-
-    public function store(Request $request): RedirectResponse
+        return $elections;
+    }
+    public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
             'username' => 'required|string',
@@ -64,10 +62,14 @@ class AuthenticatedSessionController extends Controller
     /**
      * Determine the redirect path based on the user's role.
      */
+    
     protected function redirectBasedOnRole()
     {
         $user = Auth::user();
   $elections = $this->getElections();
+  
+  //$elections = Election::whereJsonContains('eligible_voters', $user->role)
+  //->get();
 
         switch ($user->role) {
             case 'admin':

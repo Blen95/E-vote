@@ -17,6 +17,7 @@ class Election extends Model
         'start_date',
         'end_date',
         'eligible_voters',
+        'status'
     ];
     protected $casts = [
         'eligible_voters' => 'array',

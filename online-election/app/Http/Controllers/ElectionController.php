@@ -17,6 +17,8 @@ class ElectionController extends Controller
                 'description' => 'required|string',
                 'start_date' => 'required|date',
                 'end_date' => 'required|date|after:start_date',
+                'eligible_voters' => 'required|array', // Ensure eligible_voters is an array
+                'eligible_voters.*' => 'string', 
             ]);
 
             // Create a new instance of the Election model with validated data
@@ -25,6 +27,7 @@ class ElectionController extends Controller
             $election->description = $validatedData['description'];
             $election->start_date = $validatedData['start_date'];
             $election->end_date = $validatedData['end_date'];
+            $election->eligible_voters = json_encode($validatedData['eligible_voters']);
 
             // Save the record to the database
             $election->save();

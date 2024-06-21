@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('lname');
             $table->string('email')->unique();
             $table->foreignId('election_id')->constrained('election', 'eid');
-            $table->binary('cv');
-            $table->enum('status', ['pending', 'accepted', 'denied']);
+           // $table->binary('cv');
+            $table->enum('status', ['pending', 'accepted', 'denied'])->default('pending');
+            $table->string('manifesto');
             $table->timestamps();
         });
     }

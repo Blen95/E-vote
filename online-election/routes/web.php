@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ElectionView;
+use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -65,7 +66,7 @@ Route::get('/profile', function () {
 });
 Route::get('/electionclosed', function () {
     return view('/ui/production/electionclosed');
-});
+})->name('votepage');
 Route::get('/tables_dynamic', function () {
     return view('/ui/production/tables_dynamic');
 });
@@ -103,6 +104,8 @@ Route::middleware('auth')->group(function () {
 Route::post('/ui/production/createelection', [ElectionController::class, 'create'])->name('elections.create');
 //Route::get('/ui/production/index', [ElectionView::class, 'index']);
 Route::get('/ui/production/adminelection',[ElectionView::class,'index'])->name('adminelection');
+Route::get('/ui/production/electionclosed/{eid}',[VoteController::class,'candidates'])->name('votepage');
+Route::get('/ui/production/electionopened/{eid}',[VoteController::class,'candidates'])->name('requestpage');
 Route::get('/ui/production/adminelection/close/{id}', [ElectionController::class, 'close'])->name('election.close');
 Route::get('/ui/production/adminelection/open/{id}', [ElectionController::class, 'open'])->name('election.open');
 

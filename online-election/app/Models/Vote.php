@@ -16,17 +16,13 @@ class Vote extends Model
         'vote_count'
     ];
 
-    /**
-     * Get the election associated with the vote.
-     */
+    
     public function election()
     {
         return $this->belongsTo(Election::class, 'election_id', 'eid');
     }
 
-    /**
-     * Get the candidate associated with the vote.
-     */
+   
     public function candidate()
     {
         return $this->belongsTo(Candidate::class, 'candidate_id', 'candidate_id');
