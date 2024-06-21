@@ -1,18 +1,21 @@
 
 <?php
-use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash; 
 
-class UserSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
+        // Insert an admin user
         User::create([
             'fname' => 'Admin',
             'lname' => 'User',
