@@ -68,6 +68,8 @@ class AuthenticatedSessionController extends Controller
     {
         $user = Auth::user();
   $elections = $this->getElections();
+  //$elections = Election::whereJsonContains('eligible_voters', $user->role)
+  //->get();
 
         switch ($user->role) {
             case 'admin':

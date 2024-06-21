@@ -17,6 +17,7 @@ class Election extends Model
         'start_date',
         'end_date',
         'eligible_voters',
+        'status'
     ];
     protected $casts = [
         'eligible_voters' => 'array',
@@ -24,7 +25,7 @@ class Election extends Model
         'end_date' => 'date',
     ];
 
-    public function nominees()
+    public function candidates()
     {
         return $this->hasMany(Candidate::class, 'election_id', 'eid');
     }

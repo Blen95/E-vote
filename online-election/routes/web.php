@@ -57,9 +57,9 @@ Route::get('/candidateregister', function () {
 Route::get('/index2', function () {
     return view('/ui/production/index2');
 });
-Route::get('/createelection', function () {
-    return view('/ui/production/createelection');
-})->name('createelection.form');
+Route::get('/ui/production/createelection', function () {
+    return view('ui.production.createelection');
+})->name('createelection');
 Route::get('/profile', function () {
     return view('/ui/production/profile');
 });
